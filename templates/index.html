@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Viikko 2</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>xDeeZy's Linux Server – Week 2</title>
+  <style>
+    body {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      font-family: sans-serif;
+      line-height: 1.6;
+      background: #0d0d0d;
+      color: #e6e6e6;
+    }
+    h1, h2 { color: #e53935; }
+    h1 { border-bottom: 2px solid #e53935; }
+    a { color: #ff8a80; }
+    code { background: #1a1a1a; color: #ff8a80; }
+    .counter { font-size: 2em; color: #e53935; font-weight: bold; }
+  </style>
 </head>
 <body>
-    <h1>Viikko 2: Python-verkkosovellus</h1>
-    <p>Sivun latauksia: {{ kaynnit }}</p>
-    <p><a href="/">Viikon 1 etusivulle</a></p>
+  <h1>xDeeZy's Linux Server - Week 2</h1>
+  <p>Welcome to my Week 2 project! This page is made with Python (Flask) and runs behind Nginx, with MariaDB saving the visitor counter.</p>
+
+  <h2>Visitor counter</h2>
+  <p>This page has been loaded <span class="counter">{{ kaynnit }}</span> times.</p>
+
+  <h2>Database</h2>
+  <p>The visitor counter is stored in MariaDB, an open-source relational database that runs as a service on the server. I created a database called viikko2 with a table called laskuri.
+It has two columns: id and kaynnit. The app connects with its own user viikko2app, which can only read and update the counter.</p>
+
+  <h2>How the counter is stored</h2>
+  <p>Nginx receives the request from the browser and every time the page is loaded, app.py connects to MariaDB and runs an SQL command that increases the counter by one.
+ Then it reads the new value and shows it on the page. If it was a variable instead of a database, the value would be gone on reboot. MariaDB saves the data to disk in /var/lib/mysql, which is why it
+doesn't disappear. </p>
+
+  <h2>Reboot test</h2>
+  <p>...</p>
+
+  <h2>Source code</h2>
+  <p><a href="https://github.com/xDeeZy666/linuxadmin-kurssi">github.com/xDeeZy666/linuxadmin-kurssi</a></p>
+
+  <p><a href="/">← Back to Week 1</a></p>
 </body>
 </html>
